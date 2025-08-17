@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import {removeTodo} from '../features/Todo/todoSlice'
+ import toast from 'react-hot-toast';
 
 function Todos() {
     const todos = useSelector(state => state.todos)
@@ -17,7 +18,10 @@ function Todos() {
           >
             <div className='text-white'>{todo.text}</div>
             <button
-             onClick={() => dispatch(removeTodo(todo.id))}
+             onClick={() => {
+                dispatch(removeTodo(todo.id))
+                toast("Todo is deleted..")
+            }}
               className="text-white bg-red-500 border-0 py-1 px-4 focus:outline-none hover:bg-red-600 rounded text-md"
             >
               <svg
