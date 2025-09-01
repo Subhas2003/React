@@ -1,6 +1,6 @@
 import React, { useId } from 'react'
 
-export function select({
+ function select({
 
     options,
     label,
