@@ -16,7 +16,7 @@ function App() {
       if(userData){
         dispatch(login({userData})) 
       }else{
-        dispatch(logout)
+        dispatch(logout())
       }
     })
     .finally(()=>setLoading(false))

@@ -1,20 +1,21 @@
-import Conf from "../conf/conf";
+import conf from "../conf/conf";
 import { Client, Account, ID } from "appwrite";
 
-export class AuthService {
+class AuthService {
   client = new Client();
   account;
 
   constructor() {
+    // console.log(conf.appwriteUrl);
     this.client
-      .setEndpoint(Conf.appwriteUrl)
-      .setProject(Conf.appwriteProjectId);
+      .setEndpoint('https://fra.cloud.appwrite.io/v1')
+      .setProject('68a5edfe00163101eae8');
     this.account = new Account(this.client);
   }
 
   async createAccount({ email, password, name }) {
     try {
-      await this.account.create(ID.unique(), email, password, name);
+      const userAccount=await this.account.create(ID.unique(), email, password, name);
       if (userAccount) {
         //call another method
 
@@ -29,7 +30,7 @@ export class AuthService {
 
   async login({ email, password }) {
     try {
-      await this.account.createEmailPasswordSession(email, password);
+      return await this.account.createEmailPasswordSession(email, password);
     } catch (error) {
       throw error;
     }
@@ -37,22 +38,23 @@ export class AuthService {
 
   async getCurrentUser() {
     try {
-      await this.account.get();
+     return await this.account.get();
     } catch (error) {
-      throw error;
+      console.log("Appwrite serive :: getCurrentUser :: error", error);
     }
     return null;
   }
 
   async logout() {
     try {
-      await this.account.deleteSession();
+      await this.account.deleteSessions();
     } catch (error) {
       throw error;
     }
   }
 }
 
-const authService = new AuthService();
+const authService =new AuthService();
+// console.log(authService);
 
 export default authService;

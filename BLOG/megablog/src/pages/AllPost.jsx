@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { Container, Post, PostCard } from '../components'
+import { Container, PostCard } from '../components'
 import appwriteservice from '../appwrite/config'
 
-export const AllPost = () => {
+ const AllPost = () => {
     const [posts, setposts] = useState([])
     useEffect(() => { }, [])
     appwriteservice.getPost([]).then((posts) => {
@@ -24,3 +24,5 @@ export const AllPost = () => {
         </div>
     )
 }
+
+export default AllPost

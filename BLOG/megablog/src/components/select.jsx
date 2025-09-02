@@ -4,7 +4,7 @@ import React, { useId } from 'react'
 
     options,
     label,
-    clasName = '',
+    clasName,
     ...props
 }, ref) {
 
@@ -28,4 +28,5 @@ import React, { useId } from 'react'
         </div>
     )
 }
+
 export default React.forwardRef(select)
